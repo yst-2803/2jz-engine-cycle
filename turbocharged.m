@@ -82,8 +82,8 @@ printf('P4 = %.2f bar, T4 = %.0f K\n', P4/1e5, T4);
 printf('W_exp = %.1f J, W_comp = %.1f J, W_net = %.1f J\n', W_exp, W_comp, W_net);
 printf('Efficiency = %.2f%%, analytic W = %.1f J, error = %.3f%%\n', eta*100, W_check, err_pct);
 
-%% Block 5: compare with the real 2JZ-GE (engine-specs.net)
-rpm_P = 5600; P_real = 239e3; T_real = 441; %ra
+%% Block 5: compare with the real 2JZ-GTE (engine-specs.net)
+rpm_P = 5600; P_real = 239e3; T_real = 441;
 T_real  = 441;                       % rated torque (Nm) at 3600 rpm
 P_model = W_net * (rpm_P / 120) * cyl;                       % W
 T_model = P_model / ((2 * pi * rpm_P) / 60);                 % Nm
@@ -94,7 +94,7 @@ printf('Power:  model %.1f kW vs real %.0f kW  (ratio %.2f)\n', P_model/1e3, P_r
 printf('Torque: model %.1f Nm vs real %.0f Nm  (ratio %.2f)\n', T_model, T_real, T_model/T_real);
 printf('MEP:    model %.2f bar vs real BMEP %.2f bar\n', MEP/1e5, BMEP/1e5);
 printf('Power: %.0f hp (model) vs 320 hp (real)\n', P_model/745.7);
-P_GE_model = 341.5e3;   T_GE_model = 562.2;   % from ge_model.m output
+P_GE_model = 341.5e3;   T_GE_model = 562.2;   % from naturally_aspirated.m output
 P_GE_real  = 162e3;     T_GE_real  = 284;
 
 printf('\n--- Turbo gain: model vs real ---\n');

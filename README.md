@@ -25,10 +25,11 @@ The model overpredicts absolute power about twofold, which is what an ideal cycl
 
 | Parameter | Value | Source |
 |---|---|---|
-| Bore × stroke | 86.0 × 86.0 mm | engine-specs.net |
+| Bore × stroke | 86.0 × 86.0 mm | engine-specs.net: [2JZ-GE](https://www.engine-specs.net/?p=7549), [2JZ-GTE](https://engine-specs.net/?p=7580) |
 | Compression ratio | 10.0 (GE), 8.5 (GTE) | engine-specs.net |
-| Rated power | 162 kW at 5800 rpm (GE), 239 kW at 5600 rpm (GTE) | engine-specs.net |
-| Stock boost (GTE) | 0.8 bar gauge | autoevolution |
+| Rated power, 2JZ-GE | 162 kW (220 PS) at 5,800 rpm | engine-specs.net, non-VVT-i figure |
+| Rated power, 2JZ-GTE | 239 kW (325 PS) at 5,600 rpm | engine-specs.net, North America and Europe figure |
+| Stock boost (GTE) | 0.8 bar gauge | An autoevolution article; I did not keep the link |
 | Compressor isentropic efficiency | 0.7 | Assumed |
 | Intercooler effectiveness | 0.7 | Assumed |
 | Intake conditions | 101,325 Pa, 300 K | Assumed |
@@ -62,10 +63,11 @@ The rebuilt model calculates the heat input from the air and fuel mass and is ch
 - **Constant $\gamma = 1.4$** for air throughout. The model's peak temperature is about 4,900 K, well above anything a real engine reaches.
 - **The cylinder is assumed to fill completely** with a stoichiometric mixture at rated speed.
 - **The turbocharger is represented only by its effect on intake pressure and temperature**, using assumed efficiencies. Exhaust back-pressure is ignored.
+- **The real gain depends on which rating is used.** The 1.48× compares the non-VVT-i 2JZ-GE with the North America and Europe 2JZ-GTE. The Japanese-market GTE was rated at 206 kW (280 PS) with different turbochargers, which would make the real gain 1.27×.
 
 ## Use of AI
 
-I used an AI assistant to review the first version's code and locate the three errors listed above.
+The derivations and the maths are my own and are in [`notes/`](notes/). I had AI help with Octave syntax and with structuring the scripts, and I used an AI assistant to review the first version's code and locate the three errors listed above.
 
 ## Running it
 
@@ -76,3 +78,4 @@ Open the scripts in GNU Octave (written in 11.3) and run `naturally_aspirated.m`
 | `naturally_aspirated.m` | 2JZ-GE model |
 | `turbocharged.m` | 2JZ-GTE model with turbocharger and intercooler |
 | `earlier_version/` | Screenshots of the first MATLAB version and its output |
+| `notes/2JZ_Project_Notes.pdf` | Handwritten derivations |
